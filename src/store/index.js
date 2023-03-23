@@ -3,17 +3,16 @@ import axios from "axios";
 import { UAParser } from "ua-parser-js";
 
 export default createStore({
-
-  
   state: {
     zipCode: null,
     zipData: [],
     shofInfo: false,
     userIp: "",
     userBrowser: "",
-    opSys: "",
+    userCity: "",
+    userHostName: "",
+    userProvider: "",
   },
-
 
   getters: {
     zipCode_g(state) {
@@ -27,8 +26,6 @@ export default createStore({
     },
   },
 
-
-
   mutations: {
     setZipData(state, response) {
       state.zipData = response;
@@ -36,13 +33,13 @@ export default createStore({
     },
     setUserData(state, response) {
       let uap = new UAParser();
-      state.userIp = response.data;
+      state.userIp = response.data.ip;
+      state.userHostName = response.data.hostname;
+      state.userCity = response.data.city;
+      state.userProvider = response.data.org;
       state.userBrowser = uap.getResult().browser;
-      state.opSys = uap.getResult().os;
     },
   },
-
-
 
   actions: {
     async getZipData({ commit, state }) {
@@ -54,15 +51,13 @@ export default createStore({
           this.commit("setZipData", response.data);
         });
     },
-    
+
     async getUserData({ commit, state }) {
-      axios.get("https://api.ipify.org/").then((res) => {
+      axios.get("https://ipinfo.io?token=9b6151376047ec").then((res) => {
         this.commit("setUserData", res);
       });
     },
   },
-
-
 
   modules: {},
 });

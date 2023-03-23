@@ -1,16 +1,19 @@
 <template>
-  <div class="wrapper w-2/4 pt-16 flex flex-col">
+  <div class="wrapper w-2/4 pt-8   flex flex-col">
     <p class="font-bold text-blue-600/100 text-4xl mb-8 text-center">
       Your browser is - <span class="text-orange-400">{{store.state.userBrowser.name}}</span>
     </p>
     <p class="font-bold text-blue-600/100 text-4xl mb-8 text-center">
-      Browser version - <span class="text-orange-400">{{store.state.userBrowser.version}}</span>
+     Hostname - <span class="text-orange-400">{{store.state.userHostName}}</span>
    </p>
    <p class="font-bold text-blue-600/100 text-4xl mb-8 text-center">
-      Your OS - <span class="text-orange-400">{{store.state.opSys.name}} {{store.state.opSys.version}}</span>
+      Your City - <span class="text-orange-400">{{store.state.userCity}}</span>
    </p>
    <p class="font-bold text-blue-600/100 text-4xl mb-8 text-center">
       Your IP Adress - <span class="text-orange-400">{{store.state.userIp}}</span>
+   </p>
+   <p class="font-bold text-blue-600/100 text-4xl mb-8 text-center">
+      Your Provider - <span class="text-orange-400">{{store.state.userProvider}}</span>
    </p>
   </div>
 </template>
